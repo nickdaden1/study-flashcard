@@ -7,7 +7,8 @@ plugins {
 
 android {
     namespace = "com.study.flashcard"
-    compileSdk = 34
+    // compileSdk 35 do core-ktx 1.15.0 yêu cầu; targetSdk giữ 34 (hành vi runtime không đổi)
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.study.flashcard"

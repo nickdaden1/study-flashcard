@@ -21,7 +21,7 @@ jobs:
         run: |
           SDKMANAGER=$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -n 1)
           echo "sdkmanager: $SDKMANAGER"
-          "$SDKMANAGER" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          "$SDKMANAGER" "platform-tools" "platforms;android-34" "platforms;android-35" "build-tools;34.0.0" "build-tools;35.0.0"
       - name: Build debug APK + unit tests
         run: |
           chmod +x gradlew
