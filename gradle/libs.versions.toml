@@ -50,8 +50,8 @@ coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
-# Chú ý: group là com.tom_roush (gạch dưới), không phải gạch ngang.
-pdfbox-android = { group = "com.tom_roush", name = "pdfbox-android", version.ref = "pdfbox-android" }
+# Maven group là com.tom-roush (gạch ngang); package Java trong code vẫn là com.tom_roush.* (gạch dưới).
+pdfbox-android = { group = "com.tom-roush", name = "pdfbox-android", version.ref = "pdfbox-android" }
 poi-ooxml = { group = "org.apache.poi", name = "poi-ooxml", version.ref = "poi" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
