@@ -14,13 +14,35 @@
 # package nhỏ, tốn size không đáng kể, tránh lỗi reflection dưới R8.
 -keep class com.study.flashcard.data.** { *; }
 
-# Apache POI + PdfBox-Android: nhiều class nạp qua reflection,
-# giữ nguyên package để parser chạy được dưới R8 (đánh đổi size, đo ở Phase 7).
+# --- Apache POI (đọc .docx) ---
+# POI là lib desktop mang theo nhánh code không có trên Android
+# (Saxon/XPath, AWT, StAX, OSGi...). App chỉ đọc XWPF nên:
+#  - KHÔNG keep toàn bộ org.apache.poi (sẽ khiến R8 báo thiếu class + phình APK),
+#  - chỉ keep phần XWPF + schema docx (nạp qua reflection),
+#  - dontwarn các package desktop-only để R8 strip yên lặng.
+-keep class org.apache.poi.xwpf.** { *; }
+-keep class org.apache.poi.ooxml.** { *; }
+-keep class org.apache.poi.openxml4j.** { *; }
+-keep class org.apache.poi.util.** { *; }
+-keep class org.openxmlformats.schemas.wordprocessingml.** { *; }
+-keep class org.openxmlformats.schemas.officeDocument.** { *; }
+-keep class org.openxmlformats.schemas.drawingml.** { *; }
+-keep class schemaorg_apache_xmlbeans.** { *; }
 -dontwarn org.apache.poi.**
--dontwarn com.tom_roush.**
 -dontwarn org.openxmlformats.**
 -dontwarn schemaorg_apache_xmlbeans.**
--keep class org.apache.poi.** { *; }
--keep class org.openxmlformats.** { *; }
--keep class schemaorg_apache_xmlbeans.** { *; }
+-dontwarn org.apache.xmlbeans.**
+-dontwarn net.sf.saxon.**
+-dontwarn javax.xml.stream.**
+-dontwarn javax.annotation.**
+-dontwarn java.awt.**
+-dontwarn org.osgi.framework.**
+-dontwarn aQute.bnd.annotation.spi.**
+-dontwarn com.google.errorprone.annotations.**
+-dontwarn com.graphbuilder.**
+-dontwarn org.apache.logging.log4j.**
+
+# PdfBox-Android: lib build riêng cho Android; giữ nguyên để parser chạy dưới R8.
+# (Phase 7 đo size, nếu vượt 25MB sẽ thu hẹp keep này.)
+-dontwarn com.tom_roush.**
 -keep class com.tom_roush.pdfbox.** { *; }
