@@ -14,7 +14,14 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
+      # Runner ubuntu-latest đã cài sẵn Android SDK (biến ANDROID_HOME có sẵn).
+      # KHÔNG dùng android-actions/setup-android@v3: nó cố cài package 'tools'
+      # mà Google đã xóa khỏi repo -> sdkmanager exit 1. Chỉ đảm bảo 3 package cần.
+      - name: Ensure Android SDK packages
+        run: |
+          SDKMANAGER=$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager 2>/dev/null | head -n 1)
+          echo "sdkmanager: $SDKMANAGER"
+          "$SDKMANAGER" "platform-tools" "platforms;android-34" "build-tools;34.0.0"
       - name: Build debug APK + unit tests
         run: |
           chmod +x gradlew
