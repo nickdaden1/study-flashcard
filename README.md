@@ -19,6 +19,6 @@ AI (Gemini) sinh flashcard + quiz → học lặp lại ngắt quãng (SM-2) →
 - [x] Phase 2: data layer (Room + parser + chunking)
 - [x] Phase 3: AI layer (Gemini REST + retry)
 - [x] Phase 4: SM-2 + repository
-- [ ] Phase 5: UI Compose (5 màn hình)
+- [x] Phase 5: UI Compose (5 màn hình + cài đặt)
 - [ ] Phase 6: nhắc học + xuất/nhập JSON
 - [ ] Phase 7: hardening + Test Lab + bàn giao
