@@ -97,6 +97,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.kx.converter)
     implementation(libs.okhttp)
+    implementation(libs.okhttp.logging)
 
     testImplementation(libs.junit)
     testImplementation(libs.coroutines.test)
