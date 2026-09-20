@@ -48,6 +48,7 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 kx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kx-serialization" }
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
 # Maven group là com.tom-roush (gạch ngang); package Java trong code vẫn là com.tom_roush.* (gạch dưới).

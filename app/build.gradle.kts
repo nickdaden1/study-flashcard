@@ -93,5 +93,11 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
 
+    // Phase 3: AI layer (Gemini REST qua Retrofit + OkHttp)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.kx.converter)
+    implementation(libs.okhttp)
+
     testImplementation(libs.junit)
+    testImplementation(libs.coroutines.test)
 }

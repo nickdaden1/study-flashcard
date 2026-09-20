@@ -2,6 +2,7 @@ package com.study.flashcard.di
 
 import android.content.Context
 import androidx.room.Room
+import com.study.flashcard.data.ai.GeminiClient
 import com.study.flashcard.data.local.AppDatabase
 import com.study.flashcard.data.local.SecurePrefs
 import com.study.flashcard.data.parser.DocxParser
@@ -28,6 +29,8 @@ class AppContainer(appContext: Context) {
     val attemptDao get() = database.attemptDao()
 
     val securePrefs by lazy { SecurePrefs(context) }
+
+    val geminiClient by lazy { GeminiClient.create() }
 
     private val pdfParser by lazy { PdfParser(context) }
     private val docxParser by lazy { DocxParser() }

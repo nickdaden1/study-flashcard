@@ -46,3 +46,12 @@
 # (Phase 7 đo size, nếu vượt 25MB sẽ thu hẹp keep này.)
 -dontwarn com.tom_roush.**
 -keep class com.tom_roush.pdfbox.** { *; }
+
+# --- Retrofit + OkHttp (Phase 3: Gemini REST) ---
+# Giữ signature generic để converter kotlinx.serialization hoạt động dưới R8.
+-keepattributes Signature, InnerClasses, EnclosingMethod
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keep interface com.study.flashcard.data.ai.GeminiApi { *; }
