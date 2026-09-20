@@ -232,5 +232,5 @@ class ExamViewModel(
 
 /** Lấy snapshot 1 lần (không observe) để bốc đề thi. */
 private suspend fun StudyRepository.observeCardsOnce(deckId: Long): List<CardEntity> {
-    return kotlinx.coroutines.flow.first(observeCards(deckId))
+    return observeCards(deckId).first()
 }

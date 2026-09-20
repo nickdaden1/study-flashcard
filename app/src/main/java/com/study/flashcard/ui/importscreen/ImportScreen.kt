@@ -100,7 +100,8 @@ fun ImportScreen(container: AppContainer, onDone: () -> Unit) {
                 is ImportState.Review -> ReviewStep(
                     state = s,
                     initialName = "",
-                    onSave = vm::saveReviewed
+                    onSave = vm::saveReviewed,
+                    modifier = Modifier.weight(1f)
                 )
                 is ImportState.Saving -> {
                     Text("Đã lưu bộ đề! Về trang Bộ đề để bắt đầu học nhé.")
@@ -137,8 +138,14 @@ private fun ReadyStep(state: ImportState.Ready, onGenerate: (Int, Int) -> Unit) 
 }
 
 @Composable
-private fun ReviewStep(state: ImportState.Review, initialName: String, onSave: (String) -> Unit) {
+private fun ReviewStep(
+    state: ImportState.Review,
+    initialName: String,
+    onSave: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
     var name by remember { mutableStateOf(initialName) }
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
     Text("AI sinh được ${state.drafts.size} thẻ.")
     if (state.invalidCount > 0) {
         Text("${state.invalidCount} thẻ lỗi đã bị loại.", color = MaterialTheme.colorScheme.error)
@@ -168,6 +175,7 @@ private fun ReviewStep(state: ImportState.Review, initialName: String, onSave: (
         onClick = { onSave(name.ifBlank { "Bộ đề mới" }) },
         modifier = Modifier.fillMaxWidth()
     ) { Text("Lưu bộ đề") }
+    }
 }
 
 @Composable
