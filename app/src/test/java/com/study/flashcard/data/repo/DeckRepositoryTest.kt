@@ -62,8 +62,13 @@ class DeckRepositoryTest {
             )
         )
         // 1 thẻ đã thuộc (repetitions>0, chưa đến hạn), còn lại đến hạn.
-        val due = cardDao.getDue(id, Long.MAX_VALUE)
-        cardDao.update(due[0].copy(repetitions = 2, dueAt = now + day))
+        // Thẻ mới lưu có dueAt = giờ hệ thống (rất lớn so với now mốc test),
+        // nên phải gán dueAt tường minh cho cả 3 thẻ.
+        val all = cardDao.getDue(id, Long.MAX_VALUE)
+        assertEquals(3, all.size)
+        cardDao.update(all[0].copy(repetitions = 2, dueAt = now + day))
+        cardDao.update(all[1].copy(dueAt = now - 1000))
+        cardDao.update(all[2].copy(dueAt = now - 2000))
 
         r.observeDecksWithProgress(nowProvider = { now }).test {
             val item = awaitItem().single()
