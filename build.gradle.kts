@@ -1,5 +1,5 @@
 // Top-level build file. Plugin versions are managed in gradle/libs.versions.toml.
-// Phase 2 will add: kotlin.serialization + ksp to the app module.
+// kotlin.serialization + ksp được bật ở module :app từ Phase 2.
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false

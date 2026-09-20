@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    // Phase 2 sẽ thêm: kotlin.serialization + ksp (Room compiler)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -60,7 +61,11 @@ android {
                 "META-INF/DEPENDENCIES",
                 "META-INF/LICENSE*",
                 "META-INF/NOTICE*",
-                "META-INF/*.kotlin_module"
+                "META-INF/*.kotlin_module",
+                // Apache POI mang file ký số trùng nhau -> loại để tránh DuplicateFileException
+                "META-INF/*.RSA",
+                "META-INF/*.SF",
+                "META-INF/*.DSA"
             )
         }
     }
@@ -74,6 +79,19 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+
+    // Phase 2: data layer
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    implementation(libs.security.crypto)
+    implementation(libs.pdfbox.android)
+    implementation(libs.poi.ooxml) {
+        exclude(group = "commons-logging", module = "commons-logging")
+    }
+    implementation(libs.kx.serialization.json)
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
 
     testImplementation(libs.junit)
 }

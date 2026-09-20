@@ -16,7 +16,7 @@ AI (Gemini) sinh flashcard + quiz → học lặp lại ngắt quãng (SM-2) →
 
 - [x] Phase 0: git + CI sanity
 - [ ] Phase 1: scaffold Gradle project (app rỗng cài được)
-- [ ] Phase 2: data layer (Room + parser + chunking)
+- [x] Phase 2: data layer (Room + parser + chunking)
 - [ ] Phase 3: AI layer (Gemini REST + retry)
 - [ ] Phase 4: SM-2 + repository
 - [ ] Phase 5: UI Compose (5 màn hình)
