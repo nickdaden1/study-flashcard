@@ -1,0 +1,25 @@
+# Gradle / Android build outputs
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+captures/
+
+# Local tooling — không commit môi trường làm việc
+.agents/
+.claude/
+skills-lock.json
+
+# Keystore — KHÔNG bao giờ commit key thật
+*.jks
+*.keystore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+*.log

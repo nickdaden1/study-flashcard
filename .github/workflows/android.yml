@@ -1,0 +1,16 @@
+# Phase 0: CI sanity — chạy được ngay khi chưa có code app.
+# Phase 1 sẽ thay job `sanity` bằng job build APK thật
+# (setup-java 17 + setup-android + ./gradlew assembleDebug testDebugUnitTest).
+name: android-ci
+
+on: [push, pull_request]
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify spec exists
+        run: |
+          test -f docs/superpowers/specs/2026-09-20-study-flashcard-design.md \
+            && echo "spec OK"
