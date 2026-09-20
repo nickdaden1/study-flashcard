@@ -1,16 +1,26 @@
-# Phase 0: CI sanity — chạy được ngay khi chưa có code app.
-# Phase 1 sẽ thay job `sanity` bằng job build APK thật
-# (setup-java 17 + setup-android + ./gradlew assembleDebug testDebugUnitTest).
+# Phase 1: build APK debug + chạy unit test trên cloud.
+# Máy dev yếu KHÔNG build local — mọi verify qua job này.
+# Lưu ý: runner BẮT BUỘC dùng JDK 17 (AGP 8.7.3 không hỗ trợ JDK 27 của máy dev).
 name: android-ci
 
 on: [push, pull_request]
 
 jobs:
-  sanity:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify spec exists
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Build debug APK + unit tests
         run: |
-          test -f docs/superpowers/specs/2026-09-20-study-flashcard-design.md \
-            && echo "spec OK"
+          chmod +x gradlew
+          ./gradlew assembleDebug testDebugUnitTest --stacktrace
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk

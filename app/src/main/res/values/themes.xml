@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose tự vẽ UI nên theme native chỉ cần nền trắng chống chớp khi khởi động -->
+    <style name="Theme.StudyFlashcard" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+</resources>

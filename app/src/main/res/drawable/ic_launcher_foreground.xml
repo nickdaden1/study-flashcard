@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Thẻ học đơn giản: chữ nhật tím + 3 dòng trắng -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M18,30h72v48h-72z" />
+    <path
+        android:fillColor="#6750A4"
+        android:pathData="M28,44h52v5h-52zM28,55h52v5h-52zM28,66h32v5h-32z" />
+</vector>
