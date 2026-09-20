@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.study.flashcard.data.ai.GeminiClient
 import com.study.flashcard.data.local.AppDatabase
 import com.study.flashcard.data.local.SecurePrefs
+import com.study.flashcard.data.repo.DeckRepository
+import com.study.flashcard.data.repo.StudyRepository
 import com.study.flashcard.data.parser.DocxParser
 import com.study.flashcard.data.parser.FileParser
 import com.study.flashcard.data.parser.PdfParser
@@ -31,6 +33,14 @@ class AppContainer(appContext: Context) {
     val securePrefs by lazy { SecurePrefs(context) }
 
     val geminiClient by lazy { GeminiClient.create() }
+
+    val deckRepository by lazy {
+        DeckRepository(deckDao, cardDao, attemptDao, geminiClient, ::parserFor)
+    }
+
+    val studyRepository by lazy {
+        StudyRepository(cardDao, attemptDao, geminiClient)
+    }
 
     private val pdfParser by lazy { PdfParser(context) }
     private val docxParser by lazy { DocxParser() }
